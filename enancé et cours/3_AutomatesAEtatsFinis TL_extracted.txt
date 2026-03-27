@@ -1,0 +1,447 @@
+
+--- PAGE 1 ---
+Automates à états finis
+Plan
+Théorie des langages
+• Représentation des automates (FSA)
+Automates à états finis
+• Définition formelle (DFA)
+• Déterminisme du FSA (DFA / NFA / ε-NFA)
+• Équivalence DFA / NFA / ε-NFA
+2ème Année Informatique Appliquée
+Automates 2
+Automates à états finis Automates à états finis
+Plan Représentation des automates (FSA)
+" Représentation des automates (FSA) " Automate à états finis
+" Définition formelle (DFA) " Finite State Automaton (FSA)
+" Machine abstraite, issue des travaux de A. Turing
+"
+Déterminisme du FSA (DFA / NFA / ε-NFA)
+" Éléments de l'automate
+"
+Équivalence DFA / NFA / ε-NFA
+" Un ensemble fini d'états possibles
+Un ensemble fini de symboles en entrées
+"
+Une fonction de transition entre états
+"
+" Représentations
+" Diagrammes de transition
+" Tables de transition
+" Notations formelles
+Automates 3 Automates 4
+
+--- PAGE 2 ---
+Automates à états finis
+Automates à états finis
+Représentation des automates (FSA)
+Représentation des automates (FSA)
+" Diagrammes de transition " Diagrammes de transition (suite)
+" Représentation « graphique » " Pour la lisibilité, lorsque deux arcs de même orientation sont possibles
+entre deux nœuds, ils sont fusionnés (disjonction) :
+" Graphe orienté étiqueté :
+– Nœuds : états de l'automate a
+a,b
+" Étiqueté par les noms des états (généralement q x : q 1 , q 2 , q 3 , ...) b
+" État final : double cercle a
+– Arcs orientés : transitions de l'automate " Un arc peut « boucler » un état sur lui-même :
+" Étiqueté par les symboles (a, b, c, d, ...)
+" État initial : marqué par un arc sans nœud d'origine
+a q c
+2
+" Des transitions peuvent partir de l'état final :
+q 1 b d q 4
+q
+3
+Automates 5 Automates 6
+Automates à états finis
+Représentation des automates (FSA)
+" Diagrammes de transition (suite)
+" Les transitions correspondent à la concaténation
+" On « suit » les arcs pour voir quel langage est accepté :
+a q 2 c,e
+q q 1 b d 4
+q
+3
+" Le langage n'est pas forcément fini :
+Automates 7
+a L = {ac, ae, bd, aad }
+a q 2 c,e
+q q
+1 d 4
+b
+q 3
+a
+Automates à états finis
+Représentation des automates (FSA)
+" Diagrammes de transition (suite)
+Peuvent être mis intuitivement (formellement aussi) en
+"
+correspondance avec des expressions régulières
+a b R = ab
+a,b R = a+b
+a b
+R = ab+cd
+c d
+L = {ac, ae, aad, aabac,
+aabae, aabaad, b
+aabaabac, aabaabae,
+aabaabaad ... } a c R = ab*c
+Automates 8
+
+--- PAGE 3 ---
+Automates à états finis
+Représentation des automates (FSA)
+" Table de transitions
+" Équivalente à la représentation par diagramme de transitions
+" États en lignes, symboles en colonnes
+– Ligne de l'état initial marqué par une flèche →
+– Ligne de l'état final marqué par une étoile *
+" Contenu décrit les transitions depuis un état / symbole
+a c
+q q 1 d 4
+b
+q 3
+Automates 9
+a
+Automates à états finis
+Plan
+" Représentation des automates (FSA)
+" Définition formelle (DFA)
+"
+Déterminisme du FSA (DFA / NFA / ε-NFA)
+"
+Équivalence DFA / NFA / ε-NFA
+b a b c d
+→ q q Ø Ø Ø
+q 1 2 2 q q q q Ø
+2 3 2 4 q Ø q Ø q
+3 1 4
+* q Ø Ø Ø Ø
+4
+Automates 10
+Automates à états finis Automates à états finis
+Définition formelle (DFA) Définition formelle (DFA)
+" Notations pour un automate « déterministe » (DFA) " Automate à états finis
+" Un ensemble fini d'états " Définie comme le quintuplet : A = (Q, Σ, δ, q0, F)
+– Notation : Q = {q 0 , q 1 , q 2 ...} " Définition équivalente aux diagrammes et tables de transition
+" Un ensemble fini de symboles (alphabet) " Repose sur la définition de la fonction de transition δ, souvent
+– Notation : Σ = {a, b, c, d...} définie par extension (en listant les cas possibles)
+" U sy n m e b f o o l n e c e ti t o q n u i d r e e n tr v a o n ie s i u t n io n ét a q t ui prend en paramètre un état et un – La fonction peut renvoyer Ø (par ex. δ(q 1 , d) = Ø)
+" Définition de la fonction de transition « étendue »
+– Notation : δ(q i , a) = q j (« signature » δ : Q × Σ → Q) – Fonction qui prend un mot en entrée et utilise δ de l'automate
+" Un état initial – Notation (α ∈ Σ*) : δ(qi , α) = qj (« signature » δ : Q × Σ* → Q)
+– Notation : q 0 ∈ Q – Définie récursivement par décomposition du mot w :
+" Un ensemble d'états finaux " Si w = ε alors δ(q i , ε) = { q i }
+– Notation : F ⊆ Q " Si w = x.a tels que x ∈ Σ* et a ∈ Σ alors δ(q i , w) = δ( δ(q i , x) , a)
+Automates 11 Automates 12
+
+--- PAGE 4 ---
+Automates à états finis Automates à états f i nis
+Définition formelle (DFA) Plan
+" Langage reconnu par un automate déterministe " Représentation des automates (FSA)
+" Ensemble des mots tels que la fonction de transition étendue " Définition formelle (DFA)
+appliquée à l 'état initial et au mot conduit à un état final :
+"
+– L(A) = { w ∈ Σ* | δ(q 0 , w) ∈ F } Déterminisme du FSA (DFA / NFA / ε-NFA)
+" Théorème de Kleene : par définition, le langage reconnu par un " Équivalence DFA / NFA / ε-NFA
+automate à états finis (DFA) est régulier (ou rationnel)
+" Avantages et limites des automates à états finis (FSA)
+" Algorithmes rapides pour implémenter les FSA
+" Impossible de « compter » dans le cas général
+– Pas d'automate qui décrive un mot ayant autant de a que de b
+– Pas d'automate pour reconnaître une expression arithmétique bien
+formée (nécessité de recourir à des grammaires)
+Automates 13 Automates 14
+Automates à états finis
+Automates à états finis
+Déterminisme du FSA (DFA / NFA / ε-NFA)
+Déterminisme du FSA (DFA / NFA / ε-NFA)
+" Types d'automates " Déterminisme : requiert que l'automate soit dans un état
+unique (« déterminé ») après avoir lu n symboles
+" Automates à états finis
+– FSA : Finite State Automata " Automates non-déterministes (NFA)
+" Automates à états finis déterministes " Non-déterminisme : l'automate peut-être dans plusieurs états,
+– DFA : Determinist Finite state Automata « simultanément » après avoir lu n symboles
+" Automates à états finis non-déterministes – Attention : un automate non-déterministe n'implique pas que l'on ne
+« sache » pas dans quels états il est (au contraire)
+– NFA : Non-determinist Finite state Automata
+" Particulièrement utile lorsque l'on ne sait pas « à l'avance » quel état
+" Automates à états finis non-déterministes avec possibilité de final l'automate atteindra (hypothèses)
+transitions ε (mot vide)
+– Facilité de représentation / programmation
+– ε-NFA : Non-determinist Finite state Automata with ε transitions
+" GPS : une voiture se dirige vers Tunis, mais on ne connaît pas
+" Tous peuvent être représentés à l'aide des diagrammes de la destination finale (Bizerte, Beja)
+transition, tables de transition, notations formelles " Prédiction SMS : un utilisateur tape le début d'un mot, mais plusieurs
+hypothèses sont possibles pour le mot qu'il veut écrire
+Automates 15 Automates 16
+
+--- PAGE 5 ---
+Automates à états finis Automates à états finis
+Déterminisme du FSA (DFA / NFA / ε-NFA) Déterminisme du FSA (DFA / NFA / ε-NFA)
+" Fonction de transition d'un NFA " Différence de représentations DFA / NFA (suite)
+" A partir d'un état et d'un symbole : plusieurs états possibles " Soit Σ = { a, b }, comment représenter un automate qui
+reconnaît tous les mots se terminant par ab ?
+– Notation : δ(qi , a) = R ⊆ Q (« signature » δ : Q × Σ → Q*) a
+a b
+" Par ex. δ(q i , a) = {q j , q k , q l } → q q q
+– Peut aussi être l'ensemble vide : δ(qi , a) = Ø DFA b a q 1 b q 0 q 1 q 0
+" Différence de représentations DFA / NFA a 1 1 2
+q q * q q q
+DFA NFA 0 b 2 2 1 0
+Diagramme de Pour chaque paire (état, symbole), Possibilité de plusieurs arcs
+transitions au maximum un arc sortant sortant par paire (état, symboles) a,b a a b
+Table de Les cases de la table contiennent Les cases de la table → q { q , q } { q }
+transitions un état ou Ø c d o 'é n ta tie ts nnent un ensemble NFA q 0 a q 1 b q 2 q 1 0 {q 0 1} 1 { q 0 2 }
+Notation La fonction de transition renvoie La fonction de transition peut * q Ø Ø
+formelle au maximum un état renvoyer plusieurs états 2
+Automates 17 Automates 18
+Automates à états finis Automates à états finis
+Déterminisme du FSA (DFA / NFA / ε-NFA) Déterminisme du FSA (DFA / NFA / ε-NFA)
+" Fonction de transition étendue d'un NFA " Par ex. soit l'automate ci-dessous et w = baababbbab
+" A partir d'un état et d'un mot, plusieurs états possibles a,b a b
+→ q { q , q } { q }
+– – – F D N o e o n t m c a t t ê i i o o m n n e q ( , α u d i ∈ é p f r Σ in e * i ) n t i d : o δ n u ( n r q é i m c , u o α r t ) s e = i n v R e e n p ⊆ t a r Q r é e d ( é « e c t s o u ig m ti n li p s a o e tu s δ r i e t i d o » u n δ N d : F u A Q m × o t Σ w * → : Q*) q 0 a q 1 b q 2 * q q 0 1 2 0 Ø Ø 1 { q Ø 0 2 }
+" Si w = ε alors δ(q i , ε) = { q i } δ(q 0 , b ) = { q 0 }
+" Si w = x.a tels que x ∈ Σ*, a ∈ Σ et R = δ(q i , x) alors δ(q 0 , ba) = ∪ p ∈ {q0} δ(p, a) = δ(q 0 , a) = {q 0 , q 1 }
+δ ( q i
+o
+,
+u
+w
+(
+)
+é
+=
+q u
+∪
+i v
+r ∈
+a l
+R
+e n
+δ
+t
+(
+)
+r,
+:
+a )
+δ(q i , w) = ∪ q j ∈ δ(qi, δ x) (q j , a)
+δ
+δ
+(
+(
+q
+q
+0
+0 ,
+,
+b
+b
+a
+a
+a
+a
+b
+)
+)
+=
+=
+∪
+∪
+p
+p
+∈
+∈
+{q
+{
+0
+q
+,
+0
+q
+,
+1
+q
+}
+1}
+δ
+δ
+(
+(
+p
+p
+,
+,
+a
+b
+)
+)
+=
+=
+δ
+δ
+(
+(
+q
+q
+0
+0
+,
+,
+a
+b
+)
+)
+∪
+∪
+δ
+δ
+(
+(
+q
+q
+1
+1
+,
+,
+a
+b
+)
+)
+=
+=
+{
+{
+q
+q
+0
+0
+,
+,
+q
+q
+1
+2
+}
+}
+" Langage reconnu par un NFA δ(q 0 , baaba) = ∪ p ∈ {q0, q2} δ(p, a) = δ(q 0 , a) ∪ δ(q 2 , a) = {q 0 , q 1 }
+...
+• Mots w tels que δ (q 0 , w) contienne au moins un état final. δ(q , baababbbab) = {q , q }
+0 0 2
+• L(A) = { w ∈ Σ* | δ (q 0 , w) ∩ F ≠ Ø } donc δ(q 0 , baababbbab) ∩ F = {q 2 } ≠ Ø et w ∈ L(A)
+Automates 19 Automates 20
+
+--- PAGE 6 ---
+Automates à états finis Automates à états finis
+Déterminisme du FSA (DFA / NFA / ε-NFA) Déterminisme du FSA (DFA / NFA / ε-NFA)
+" Automates avec transitions ε (ε-NFA) " Fonction de transition d'un ε-NFA
+" Transition ε : transitions sur le mot vide → aucun symbole " Identique à celle du NFA, mais en tenant compte des transitions ε
+comme élément pour réaliser une transition
+– La transition se réalise systématiquement
+" Facilité supplémentaire de représentation / programmation – Le mot-vide ε n'est pas nécessairement un élément de l'alphabet Σ
+– Lorsque des parties sont «optionnelles» – Notation : δ(qi , a) = R ⊆ Q (« signature » δ : Q × Σ ∪ {ε} → Q*)
+" Tout automate qui comporte une transition ε est non- déterministe " Fermeture (transitive) par transition ε
+(peut-être dans plusieurs états simultanément)
+" Fermeture transitive (clôture, algèbre) ≃ éléments que l'on peut
+" Par ex., les mots abc ou c : atteindre en utilisant un opérateur donné récursivement
+q b q q " Définition d'une fonction récursive « epsClos » :
+a 1 2 c a 1 b – Pour tout q i ∈ Q, q i ∈ epsClos(q i )
+q
+0
+c q
+3
+q
+0
+ε q
+2
+c q
+3
+– Pour tout qi ∈ Q, si δ(qi , ε) = R ⊆ Q alors R ⊂ epsClos(q )
+DFA ε-NFA " On « suit » toutes les transitions ε possibles, récursivement
+Automates 21 Automates 22
+Automates à états finis Automates à états f i nis
+Déterminisme du FSA (DFA / NFA / ε-NFA) Déterminisme du FSA (DFA / NFA / ε-NFA)
+" Par ex. : " Fonction de transition étendue d'un ε-NFA
+q ε q
+a 2 ε a 4 b " Même approche que pour un NFA
+q b q ε q a q – Fonction qui prend un mot en entrée et utilise δ du ε-NFA
+0 1 3 5 – Notation (α ∈ Σ*) : δ(q , αi) = R ⊆ Q (« signature » δ : Q × Σ* → Q*)
+epsilonClosure(q ) = {q } – Transitions tiennent compte des transitions ε avec epsClos
+" 0 0
+– De même, définition récursive par décomposition du mot w :
+epsilonClosure(q ) = {q , q }
+" 1 1 3 " Si w = ε alors δ(q i , w) = epsClos(q i )
+" epsilonClosure(q 2 ) = {q 2 , q 1 , q 3 } " Si w = x.a tels que x ∈ Σ*, a ∈ Σ et R = δ(q i , x) alors
+δ(q , w) = ∪ ∪ epsClos(s)
+" epsilonClosure(q 3 ) = {q 3 } ou ( i é . q u i v a l e r n ∈ t R ) : δ(q s i ∈ , δ w ( r , ) a ) = ∪ qj ∈ δ(qi, x) ∪ qk ∈ δ(qj, a) epsClos(q k )
+epsilonClosure(q ) = {q , q , q , q }
+" 4 4 2 1 3 " Langage reconnu par un ε-NFA (comme pour NFA)
+" epsilonClosure(q 5 ) = {q 5 } " L(A) = { w ∈ Σ* | δ(q 0 , w) ∩ F ≠ Ø }
+Automates 23 Automates 24
+
+--- PAGE 7 ---
+Automates à états finis Automates à états finis
+Déterminisme du FSA (DFA / NFA / ε-NFA) Plan
+" Par ex. : " Représentation des automates (FSA)
+q ε q
+a 2 ε a 4 b " Définition formelle (DFA)
+q b q ε q a q "
+0 1 3 5 Déterminisme du FSA (DFA / NFA / ε-NFA)
+"
+δ(q , a) = {q , q , q } Équivalence DFA / NFA / ε-NFA
+"
+0 2 1 3
+δ(q , b) = {q , q }
+"
+0 1 3
+" δ(q , aa) = {q , q , q , q , q } = δ(q , ba) = δ(q , aaa)
+0 5 4 2 1 3 0 0
+" δ(q 0 , bb) = Ø
+" δ(q , bab) = {q } = δ(q , baab) = δ(q , aab) = δ(q , aaab)
+0 5 0 0 0
+Automates 25 Automates 26
+Automates à états finis
+Automates à états finis
+Équivalence DFA / NFA / ε-NFA
+Équivalence DFA / NFA / ε-NFA
+" Les automates reconnaissent des langages " Équivalence DFA / NFA
+Représentation de l'automate plus ou moins « dense »
+" " Tout DFA peut-être considéré comme un NFA
+" Distinction entre DFA, NFA et ε-NFA " Soit un NFA, N = (Q N , Σ N , δ N , q N0 , F N )
+– Fonctions de transitions – Il existe un DFA, D = (QD , ΣD , δD , qD0 , FD ) tel que L(D) = L(N)
+– Nombre d'états atteints depuis un état en consommant un symbole " Même alphabet (Σ D = Σ N ), même état initial (q D0 = q N0 )
+" Le langage reconnu par un automate ne dépend pas des états de " On construit Q D comme l'ensemble des sous-ensemble de Q N
+l'automate – Par ex. si QN = {q0 , q1 } alors QD = {{q0 }, {q1 }, {q0 q1 } }
+– Plusieurs automates possibles pour un même langage " États finaux F D : ceux qui sont construits avec un état final de F N
+" Équivalence des automates (langages reconnus) F D = {q Di ∈ Q Ni | {q Di ∈ q N } ∩ F N ≠ Ø}
+" Fonction de transition δ D de D qui, à partir d'un état de Q D comme
+" Automates DFA et NFA construction de Q N renvoie vers une autre construction de Q N :
+" Automates NFA et ε-NFA δ D (q Di , a) = { ∪ qNj ∈ qDi δ N (q Nj , a) }
+Automates 27 Automates 28
+
+--- PAGE 8 ---
+Automates à états finis Automates à états finis
+Équivalence DFA / NFA / ε-NFA
+Équivalence DFA / NFA / ε-NFA
+" Équivalence DFA / NFA (suite) " Équivalence NFA / ε-NFA
+" Preuve sur la longueur du mot w = x.a " Tout NFA peut-être considéré comme un ε-NFA
+− Supposons que : δ D (q D0 , x) = δ N (q N0 , x) = Q " Soit un ε-NFA, E = (Q E , Σ E , δ E , q E0 , F E )
+‒ Par définition du NFA :
+Il existe un NFA, N = (Q , Σ , δ , q , F ) tel que L(N) = L(E)
+– N N N N0 N
+" δ N (q N0 , x.a) = ∪ qNj ∈ δ (q N0, x) δ(q Nj , a) = ∪ qNj ∈ Q δ N (q Nj , a) " Même alphabet (Σ N = Σ E )
+– Et par construction du DFA :
+" On construit Q N comme l'ensemble des sous-ensemble de Q E
+" δ D (q D i , a) = { ∪ qNj ∈ qDi δ N (q N j , a) } " État initial construit q N0 = {epsClos(q E0 )}
+" δ D (q D 0 , x.a) = δ D (δ D (q D0 , x ) , a ) = δ D (Q, a) = { ∪ qNj ∈ Q δ (q N , a N ) j } " États finaux F N : construits avec un état final de F E
+– Alors δ N (q N0 , x.a) = ∪ qNj ∈ Q δ N (q Nj , a ) = δ D ( q D0 , x.a) F = {q ∈ Q | {q ∈ q } ∩ F ≠ Ø}
+N Ni N Ei Ni E
+" Récursivité : le DFA et le NFA aboutissent aux mêmes états, mais " Fonction de transition δ N de N qui, à partir d'un état de QN
+dans le cas du DFA c'est « par construction » comme construction de Q renvoie vers une autre construction de Q :
+E E
+" Pour tout NFA, il est possible de construire un DFA qui δ N (q Ni , a) = { ∪ qEj ∈ qNi ∪ qNk ∈ δE(qNi, a) epsClos(q NK ) }
+reconnaîtra le même langage.
+Automates 29 Automates 30

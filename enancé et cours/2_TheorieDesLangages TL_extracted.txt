@@ -1,0 +1,250 @@
+
+--- PAGE 1 ---
+Théorie des langages
+Plan
+! Alphabets et langages
+Théorie des langages
+! Expressions régulières formelles
+2ème Année Informatique Appliquée
+Automates 2
+Théorie des langages Théorie des langages
+Alphabets et langages Alphabets et langages
+! Structure du langage : ! Alphabet, un ensemble « hors-langage » :
+! Algèbre, ensemble muni d'opérations (anneau) ! Ensemble ∑ des symboles utilisés par un langage
+! « Briques de base » : alphabet – ∑ = {a, b, c, d … z} ( = [a-z] )
+! Propriétés formelles particulières du langage – ∑ = {0, 1, 2... 9} ( = [0-9] )
+– ∑ = {a, f, d, x}
+! Différentes manières de définir un langage :
+– ∑ = {b, c, 0, $, μ, z}
+! Intentionnelle : « tous les mots qui... » – ∑ = {ab, de, xyz}
+! Extensionnelle : {mot, autremot, a, b, 3, 42 } – ∑ = {abc, a, tuv, vu}
+! Définitoire : {xyz | x = yz } ! On considère les éléments comme atomiques : « abc » peut- être un
+symbole unique pour un langage
+• Opération sur d'autres langages (union, concaténation, ! Pas de répétitions au sein d'un alphabet (ensemble)
+intersection, complémentaire ...)
+Automates 3 Automates 4
+
+--- PAGE 2 ---
+Théorie des langages Théorie des langages
+Alphabets et langages Alphabets et langages
+! Mot (ou chaîne) : ! Un langage est un ensemble de mots
+! Un élément de l'alphabet est un mot ! Définition de langages à partir d'alphabets :
+! Concaténation « . » de symboles issus d'un alphabet : ! Langage généré par un alphabet (récursive) :
+– ∑ = {0, 1} : α1= 0 .0.1.0, α2 = 1.0.0.0.1.0 ... – Tout mot de l'alphabet appartient au langage
+Toute concaténation de mots du langage appartient au langage
+– Associative : (a.b).c = a.(b.c) –
+– Non commutative : 0.1 ≠ 1.0 – Le mot vide ε appartient au langage
+! Quelque soit l'alphabet, il est possible de former le mot (ou chaîne) ! Puissance « ∑i » d'un alphabet :
+vide, noté « ε » (différent de ∅)
+– Tous les mots formés par concaténation de i éléments de ∑
+! Taille du mot : | x |, nombre de symboles : – Quelque soit l'alphabet, ∑0 = { ε }
+– | 0.1.0.0 | = 4 (∑ = {0, 1}) –
+Par ex., si ∑ = {0, 1} alors :
+– | d.d.ab.ab.d | = 5 (∑ = {ab, d}) ! ∑1 = {0, 1}
+– | ε | = 0 (∀ ∑) ! ∑2 = {00, 01, 10, 11}
+! ∑3 = {000, 001, 010, 011, 100, 101, 110, 111}
+Automates 5 Automates 6
+Théorie des langages Théorie des langages
+Alphabets et langages Alphabets et langages
+! Fermeture / étoile de Kleene « * » : ! Langage sur un alphabet :
+! Kleene : mathématicien américain ! Un langage L sur un alphabet ∑ est un sous-ensemble de ∑*
+! Fermeture (étoile, itéré) (informellement) : tout ce qu'il est possible ! Opérations sur les langages (étant donné ∑) :
+de construire à partir d'un alphabet / langage
+! Concaténation : « L.M » (ou « LM ») : mot formés par concaténation
+! Union de toutes les puissances d'un alphabet : d'éléments de L et de M (dans l'ordre)
+– ∑* = ∑0 ∪ ∑1 ∪ ∑2 ∪ ∑3 ∪ ∑4 … A–ssociative, non commutative, élément neutre ε, élément absorbant ø
+! Ou « langage de ∑ », « langage généré par ∑ » • Puissance : « Li » = { α ∈ L* t. q. |α| = i } (idem alphabet)
+! Quelque soit ∑ : ε ∈ ∑*
+– Remarque : L0 = ε et Li = Li-1.L
+! Attention à la distinction symboles / mots :
+Fermeture (étoile, itéré) : « L* » = ∪ Li (idem alphabet)
+!
+! Si ∑ = {0, 11} alors 1.0.1 n'appartient pas à ∑* i≥0
+– Idempotente : (L*)* = L*
+! Si ∑ = {a, ab} alors a.ab.b.ab. n'appartient pas à ∑*
+– Quelque soient L et ∑ : ε ∈ L* (idem alphabet)
+Automates 7 Automates 8
+
+--- PAGE 3 ---
+Théorie des langages Théorie des langages
+Alphabets et langages Alphabets et langages
+! Union : « L ∪ M » (ou L + M) mots issus soit de L soit de M ! Quelques exemples :
+– Associative, commutative, élément neutre ø – Alphabet ∑ = { a, b, c }
+– La concaténation est distributive par rapport à l'union
+∑ Éléments de
+! Intersection : « L ∩ M » : mots qui existent dans L et dans M b l'alphabet
+a
+– Associative, commutative, élément neutre ∑*, élément absorbant ø
+c
+! Complémentaire : « L » : mots de ∑* qui ne sont pas dans L
+! Fermeture (étoile, itéré) stricte : : « L+ » =
+∪Li
+i≥1 – Langages L = { a, b }, L = { a, c }
+1 2
+– Remarques : idempotente, L+ = L.L* et L* = L+ ∪ {ε}
+L L
+1 2
+a c
+b a
+Éléments du
+langage
+Automates 9 Automates 10
+Théorie des langages Théorie des langages
+Alphabets et langages Alphabets et langages
+Théorie des langages
+Théorie des langages
+Alph! aQbueetslq ueets leaxnemgaplgese (ssuite) : ∑ Alph ! a Q b u e e ts lq u e e t s l e a x n em ga pl g es e ( s suite) : ∑
+a b c a b c
+–
+∑ = { a, b, c }, L
+1
+= { a, b }, L
+2
+= { a , c }
+–
+∑ = { a, b, c }, L
+1
+= { a, b }, L
+2
+= { a, c }
+– Union : L 3 = L 1 ∪ L 2 Él
+l
+é
+'a
+m
+lp
+e
+h
+n
+a
+t
+b
+s
+e
+d
+t
+e – Union et concaténation : L 5 = L 1 ∪ ( L 1 . L 2 ) Él
+l
+é
+'a
+m
+lp
+e
+h
+n
+a
+t
+b
+s
+e
+d
+t
+e
+L L
+3 5
+c
+b L a a a a c
+a a 1 b b L 1 L 1 . L 2 b a b c a L 1 b
+– Concaténation : L 4 = L 1 . L 2 L 2 L
+L a c 2
+4 a c
+a a a c – Intersection : L6 = L 1 ∩ L 2
+b a b c Éléments du L 1 L 6 L 2 Éléments du
+langage b a c langage
+Licence Informatique –L1 Licence Informatique –L1
+Damien Nouvel Automates 11 Damien Nouvel Automates 12
+
+--- PAGE 4 ---
+Théorie des langages Théorie des langages
+Alphabets et langages Alphabets et langages
+Théorie des langages
+Alphabets et langages ∑ ∑
+! Quelques exemples (suite) : ! Quelques exemples (suite) :
+a b c a b c
+– ∑ = { a, b, c }, L 1 = { a, b }, L 2= { a, c } – ∑ = { a, b, c }, L 1 = { a, b }, L 2 = { a, c }
+– Puissance : L7= L 1 0, L 8 = L 1 1, L 9 = L 1 2, L 10 = L 1 3 Él l é 'a m lp e h n a t b s e d t e – Fermeture : L11 = ∑* (= ∑0 ∪ ∑1 ∪ ∑2 ...), L12 = L1 * Él l é 'a m lp e h n a t b s e d t e
+L L
+L 9 a a 11 a a a a a a 1 2 ...
+L L a a a. b
+ε 7 a 8 b b a b. b a L 1 b a a b a a b a a a a a b a L 1 b
+ε b a c a a c ... ε a b a b a ...
+L L 2 c ... ... b b a b a a L 2
+a a a a a b 10 a b a a b b a c a c
+c a c a a b b b a b
+b a a b a b b b a b b b Éléments du Éléments du
+langage ... ... ... ... langage
+Licence Informatique –L1
+Damien Nouvel Automates 13 Automates 14
+Théorie des langages
+Théorie des langages
+Alphabets et langages
+Plan
+∑
+! Quelques exemples (suite) : ! Alphabets et langages
+a b c
+∑ = { a, b, c }, L = { a, b }, L= { a, c }
+– 1 2 ! Expressions régulières formelles
+– C o m p l é m e n t a i re : L 1 3 = L1 (≈ «∑* - L 1 ») Éléments de
+l'alphabet
+L
+13
+a a a a a
+L
+a b a a b 1
+a a b
+ε c a c a a c ...
+∑* L
+... ... 2
+a c
+b
+c a c a a
+Éléments du
+... ... langage
+Licence Informatique –L1
+AutoDmaamteisen Nouvel 15 Automates 16
+
+--- PAGE 5 ---
+Théorie des langages Théorie des langages
+Expressions régulières formelles Expressions régulières formelles
+! Expressions régulières : ! Définition récursive (étant donné ∑) :
+! ≃ expressions rationnelles (langage régulier ≃ rationnel) ! Tout élément de ∑ est une expression régulière
+! Formalisées mathématiquement en 1959 (Rabin & Scott) ! Si r est une expression régulière, alors (r), r+, r* aussi
+! Utilisées en programmation (regexp) : grep, awk, Perl, Python ! Si r et r sont des exp. régulières, alors r r et r + r aussi
+1 2 1 2 1 2
+! Un « langage pour définir un langage » ! Soit l'application L qui associe à une expression régulière un
+! Symboles (par priorité) : { (, ), *, +, +} langage, définie de la manière suivante :
+! Une expression régulière « génère », « accepte », ! L : Reg(∑) → ∑*
+« reconnaît » un langage (dit régulier)
+! L( a ) = { a } ∀ a ∈ ∑ , L( ε ) = { ε } et L( ∅ ) = ∅
+! Langage des expression régulières sur ∑ : Reg(∑) L( r + r ) = L(r ) ∪ L(r )
+!
+1 2 1 2
+! Reg(∑) ⊂ (∑ ∪ { +, *, +, (, ) } )* L( r r ) = L(r ) . L(r )
+!
+1 2 1 2
+! Programmation : le + deviendra | (éviter la confusion)
+! L( r* ) = L(r)* et L( r+ ) = L(r)+
+Automates 17 Automates 18
+Théorie des langages Théorie des langages
+Expressions régulières formelles Expressions régulières formelles
+! Par ex., soit ∑ = { a, b, c } : ! Quelques cas d'applications classiques :
+exercice d’application:
+! Trouver des fichiers dans un dossier :
+● L(b) = b
+– Tous les fichiers d'extension « .jpg » : *.jpg
+● L(a+c) = L(a) ∪ L(c) = {a, c}
+! Chercher toutes les fonctions « get... » dans un programme :
+● L(ac) = L(a) . L(c) = {a.c}
+– Expression régulière : function get[a-Z]*(
+● L(c*) = L(c)* = {c}* = {ε, c, cc, ccc, cccc...}
+● L(a+c*) = L(a) ∪ L(c*) = {a} ∪ {c}* = {ε, a, c, cc, ccc, cccc...} ! Extraire toutes les phrases d'un texte :
+● L((a+b)*) = (L(a) ∪ L(b))* = {a, b}* – Expression régulière : (.+?+!)*(.+?+!)*
+! Vérifier si une entrée de programme est bien un entier :
+● = {ε ,a, b, aa, ab, ba, bb, aaa, aab, aba, abb, baa, bab …}
+– Expression régulière : (-+ε){0...9)*
+● L((ac)++b) = (L(a) . L(c))+ ∪ L(b) = {ac}+ ∪ {b}
+! Chercher les mots au pluriel dans un texte :
+● = {b, ac, acac, acacac …}
+● L(a++(abc)*+((b+a)c)+) = L(a)+ ∪ L(abc))* ∪ L({b, a}.c)+ – Expression régulière : [a-z]*((e+a)ux+s)
+● = {a, aa, aaa ... ε, abc, abcabc ... bc, ac, bcbc, acac...}
+Automates 19 Automates 20

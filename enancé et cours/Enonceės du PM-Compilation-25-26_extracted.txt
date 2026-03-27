@@ -1,0 +1,133 @@
+
+--- PAGE 1 ---
+ÉNONCÉ DU PROJET :
+PLATEFORME SMART CITY AVEC COMPILATION ET IA GÉNÉRATIVE
+Module : Théorie des Langages et Compilation. Section : IA 2
+Année : 2025-2026
+Durée : 6 semaines Équipes : 2 étudiants
+Contexte du Projet
+La métropole "Neo-Sousse 2030" souhaite déployer une plateforme intelligente de gestion des
+données urbaines. Cette plateforme doit non seulement collecter et analyser des données, mais
+aussi permettre aux gestionnaires urbains d'interagir avec le système en langage naturel, de
+modéliser les processus métier sous forme d'automates, et de générer automatiquement des
+rapports analytiques.
+Votre mission est de concevoir et développer un système intégré qui combine :
+• Une base de données relationnelle pour les données urbaines
+• Un compilateur de requêtes en langage naturel vers SQL
+• Des automates à états finis pour modéliser les workflows métier
+• Un module d'IA générative pour la production de rapports
+Objectifs Pédagogiques
+1. Appliquer les concepts de théorie des langages (abordés dans le cours)
+2. Modéliser des processus complexes avec des automates à états finis
+3. Intégrer des techniques d'IA générative dans un système réel
+4. Développer une architecture logicielle complète (front-end, back-end, base de
+données)
+5. Travailler sur des données urbaines réelles (simulées)
+Partie 1 : Modélisation et Conception:
+1.1 Automates à États Finis
+Modéliser sous forme d'automates finis déterministes les processus suivants :
+a) Cycle de vie d'un capteur :
+• États : INACTIF → ACTIF → SIGNALÉ → EN MAINTENANCE → HORS SERVICE
+• Événements : installation, détection d'anomalie, réparation, panne
+b) Processus de validation d'intervention :
+Implique deux techniciens + validation IA
+États: DEMANDE → TECH1_ASSIGNÉ → TECH2_VALIDE → IA_VALIDE → TERMINÉ
+c) Trajet d'un véhicule autonome :
+1 sur 4
+
+--- PAGE 2 ---
+• États : STATIONNÉ → EN_ROUTE → EN_PANNE → ARRIVÉ
+Livrable : Diagrammes d'automates (format graphique) + tables de transition
+1.2 Schéma de Base de Données
+Concevoir le schéma relationnel normalisé (3FN minimum) incluant :
+• Tables : capteurs, interventions, citoyens, véhicules, mesures
+• Relations et cardinalités
+• Contraintes d'intégrité
+Partie 2 : Développement:
+2.1 Moteur de Compilation (NL → SQL)
+Implémenter en Python un compilateur qui transforme les requêtes en langage naturel en
+requêtes SQL.
+Fonctionnalités attendues :
+• Tokenisation (lexer)
+• Analyse syntaxique selon votre grammaire (parser)
+• Construction d'un AST (Abstract Syntax Tree)
+• Génération de code SQL
+• Gestion des erreurs syntaxiques/sémantiques
+2.2 Moteur d'Automates
+Implémenter les automates définis en 1.2 avec capacité à :
+• Vérifier la validité d'une séquence d'événements
+• Déterminer l'état courant d'une entité (capteur, intervention, véhicule)
+• Déclencher des actions automatiques (ex: alerte si capteur hors service > 24h)
+Technologie : Utiliser la librairie transitions ou implémenter votre propre moteur.
+2.3 Module d'IA Générative
+Développer un module qui :
+1. Génère des rapports textuels à partir des données de la base
+◦ Ex: "Rapport qualité de l'air du 15/03/2026 : 3 zones dépassent les seuils..."
+2. Suggère des actions aux gestionnaires
+◦ Ex: "Intervention recommandée sur le capteur C-452 : taux d'erreur de 15%"
+2 sur 4
+
+--- PAGE 3 ---
+3. Valide les transitions d'automates (option avancée)
+2.4 Tableau de Bord Interactif
+Créer une interface utilisateur avec Streamlit ou React qui permet :
+• De saisir des requêtes en langage naturel
+• De visualiser les résultats sous forme de tableaux/graphiques
+• De voir l'état des automates en temps réel (diagrammes interactifs)
+• De consulter les rapports générés par l'IA
+Partie 3 : Données et Tests:
+3.1 Base de Données
+• Implémenter le schéma en PostgreSQL/MySQL
+• Générer des jeux de données réalistes (1000+ enregistrements)
+• Inclure des données temporelles (séries temporelles pour les mesures)
+3.2 Scénarios de Test
+Préparer et exécuter au moins 10 scénarios de test qui couvrent :
+• La compilation de requêtes variées
+• Le fonctionnement des automates
+• La génération de rapports par l'IA
+• Les performances du système
+Exemple de scénario :
+1. Un capteur passe en état "signalé"
+2. Le système génère automatiquement une demande d'intervention
+3. Deux techniciens sont assignés, l'IA valide
+4. L'utilisateur demande "Quelles interventions sont en cours ?"
+5. Le compilateur traduit en SQL, la requête s'exécute
+6. L'IA génère un rapport de statut
+Exemples de Requêtes à Supporter
+Langage Naturel SQL Généré
+"Affiche les 5 zones les plus SELECT zone, AVG(pollution) FROM mesures GROUP BY
+polluées" zone ORDER BY AVG(pollution) DESC LIMIT 5
+"Combien de capteurs sont SELECT COUNT(*) FROM capteurs WHERE statut =
+hors service ?" 'hors_service'
+3 sur 4
+
+--- PAGE 4 ---
+"Quels citoyens ont un score SELECT nom, score FROM citoyens WHERE score_ecolo
+écologique > 80 ?" > 80 ORDER BY score_ecolo DESC
+"Donne-moi le trajet le plus SELECT trajet_id, economie_co2 FROM trajets ORDER BY
+économique en CO2" economie_co2 DESC LIMIT 1
+Critères d'Évaluation
+Critère Poids Détails
+Qualité des grammaires et automates, justifications
+Modélisation 25 %
+théoriques
+Fonctionnalité du compilateur, moteur d'automates, IA
+Implémentation 30 %
+générative
+Interface 20 % Convivialité du dashboard, visualisations interactives
+Données et Tests 15 % Qualité des jeux de données, exhaustivité des tests
+Innovation 10 % Originalité des fonctionnalités, propositions créatives
+Bonus :
+• +5% pour la gestion des requêtes ambigües
+• +5% pour l'intégration de TimescaleDB (séries temporelles)
+• +5% pour la visualisation graphique des automates
+Stack Technique Recommandée
+• Langages : Python (principal), SQL, JavaScript (optionnel)
+• Base de données : PostgreSQL
+• Librairies Python :
+◦ Automates : transitions, automaton
+◦ IA : transformers, openai, langchain
+◦ Dashboard : streamlit, plotly, dash
+◦ Data : pandas, sqlalchemy, psycopg2
+• Visualisation : D3.js, Chart.js, Graphviz
+4 sur 4
